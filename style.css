@@ -1,0 +1,297 @@
+/* =========================================
+   マンションポエムメーカー 見た目の設定
+   ========================================= */
+
+/* 色をまとめて「変数」にしておくと、あとで一括変更できる */
+:root {
+  --bg: #0f1a2b;        /* 背景：深い紺 */
+  --card: #16243a;      /* カードの色 */
+  --gold: #c9a75e;      /* 高級感のある金色 */
+  --text: #f3eee3;      /* 文字色：少し温かい白 */
+  --muted: #9aa5b5;     /* 控えめな文字色 */
+}
+
+/* 余白の計算をわかりやすくするおまじない */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  /* 明朝体で「広告っぽさ」を出す。端末に入っているフォントを順に探す */
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
+  line-height: 1.7;
+  /* 中身を画面中央に寄せる */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px 16px;
+}
+
+main {
+  width: 100%;
+  max-width: 560px;   /* パソコンでも横に広がりすぎないように */
+}
+
+/* ---------- ヘッダー ---------- */
+.site-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.site-sub {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.site-title {
+  margin: 4px 0 0;
+  font-size: 1.5rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+}
+
+/* ---------- ポエムカード ---------- */
+.poem-card {
+  background: var(--card);
+  border: 1px solid var(--gold);
+  /* 内側にもう1本細い線を引いて、高級パンフレット風に */
+  outline: 1px solid rgba(201, 167, 94, 0.35);
+  outline-offset: -8px;
+  padding: 40px 24px 32px;
+  text-align: center;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ---------- イメージイラスト ---------- */
+.scene {
+  position: relative;      /* 「※画像はイメージです」を右上に重ねるため */
+  margin: -16px 0 20px;
+  border: 1px solid rgba(201, 167, 94, 0.4);
+  line-height: 0;          /* 画像の下にできる謎のすき間を消す */
+}
+.scene svg {
+  width: 100%;             /* カードの幅に合わせて伸び縮み */
+  height: auto;
+  display: block;
+}
+/* 用意した画像：横長3:2に切りそろえて表示 */
+.scene img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;       /* 縦横比が違っても、はみ出た部分を切って埋める */
+  display: block;
+}
+.scene .caption {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 0.6rem;
+  line-height: 1.4;
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+}
+
+/* 築30年以上のときは、セピア色の古写真風に */
+.scene.old svg {
+  filter: sepia(0.75) saturate(0.8);
+}
+
+.tagline {
+  margin: 0 0 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+
+.main-copy {
+  margin: 0 0 16px;
+  font-size: 1.6rem;
+  font-weight: normal;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  word-break: auto-phrase;  /* 日本語を文節で改行する（対応ブラウザのみ） */
+}
+
+.sub-copy {
+  margin: 0 0 28px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* 本文（ボディコピー）：サブコピーより少し控えめに */
+.body-copy {
+  margin: -12px 0 28px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 2;
+}
+.body-copy p {
+  margin: 0;
+}
+
+.property {
+  border-top: 1px solid rgba(201, 167, 94, 0.4);
+  padding-top: 16px;
+}
+.property-name {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+}
+.property-info {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* 注釈：わざと小さく、目立たない色で（本物の広告っぽく） */
+.notes {
+  margin: 12px 0 0;
+  font-size: 0.65rem;
+  color: #6f7a8a;
+  line-height: 1.5;
+}
+
+/* ---------- 特徴の選択チップ ---------- */
+.features h3 {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: normal;
+  margin: 0 0 8px;
+}
+.features .hint {
+  font-size: 0.75rem;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;    /* 入りきらなければ次の行へ折り返す */
+  gap: 8px;
+  margin-bottom: 16px;
+}
+/* 本物のチェックボックスは隠して、横の span をボタン風に見せる */
+.chip input {
+  position: absolute;
+  opacity: 0;
+}
+.chip span {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #3a4a62;
+  border-radius: 999px;   /* 角を丸くしてカプセル型に */
+  font-size: 0.85rem;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+/* チェックが入ったら色を変える（アピール＝金色） */
+.chip input:checked + span {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg);
+}
+/* デメリットは選ぶと赤茶色に */
+.chip.demerit input:checked + span {
+  background: #8e4b42;
+  border-color: #8e4b42;
+  color: var(--text);
+}
+/* キーボード操作時に、今どこを選んでいるか分かるように */
+.chip input:focus-visible + span {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* 新しいポエムが出たときのふわっと表示するアニメーション */
+.fade-in {
+  animation: fadeIn 0.8s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- ボタン ---------- */
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.btn {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 14px 16px;   /* スマホで押しやすい大きさ */
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+}
+.btn-main {
+  flex: 1;              /* 残りの幅をいっぱいに使う */
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  font-weight: bold;
+}
+.btn-sub {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+.btn:active {
+  transform: scale(0.97);  /* 押した感触 */
+}
+
+.message {
+  min-height: 1.5em;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--gold);
+  margin: 8px 0 0;
+}
+
+/* ---------- 履歴 ---------- */
+.history h3 {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: normal;
+  border-bottom: 1px solid #2a3a52;
+  padding-bottom: 4px;
+  margin-top: 24px;
+}
+.history ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.history li {
+  font-size: 0.85rem;
+  padding: 8px 0;
+  border-bottom: 1px dashed #2a3a52;
+}
+
+/* ---------- フッター ---------- */
+.site-footer {
+  margin-top: auto;
+  padding-top: 32px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- スマホ向けの調整（画面幅が480px以下のとき） ---------- */
+@media (max-width: 480px) {
+  .main-copy {
+    font-size: 1.3rem;
+  }
+  .poem-card {
+    padding: 32px 18px 24px;
+  }
+}

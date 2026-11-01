@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- 文字化けを防ぐ設定 -->
+  <meta charset="UTF-8">
+  <!-- スマホで画面幅に合わせて表示するための設定（これが無いとスマホで小さく表示される） -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>マンションポエムメーカー</title>
+  <!-- 見た目（デザイン）は style.css に書く -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <p class="site-sub">ボタンひとつで、あなたの街が楽園になる。</p>
+    <h1 class="site-title">マンションポエムメーカー</h1>
+  </header>
+
+  <main>
+    <!-- 物件の特徴を選ぶエリア。ボタン（チップ）は script.js が自動で並べる -->
+    <section class="features">
+      <h3>アピールポイント</h3>
+      <div class="chips" id="appealChips"></div>
+      <h3>デメリット<span class="hint">（ポエムで言い換えます）</span></h3>
+      <div class="chips" id="demeritChips"></div>
+    </section>
+
+    <!-- 生成したポエムを表示する「広告カード」 -->
+    <section class="poem-card" id="poemCard">
+      <!-- 物件のイメージイラスト。中身は script.js が描く -->
+      <div class="scene" id="scene" role="img" aria-label="物件のイメージイラスト"></div>
+      <p class="tagline" id="tagline">THE ETERNAL RESIDENCE</p>
+      <h2 class="main-copy" id="mainCopy">下のボタンを押してください。</h2>
+      <p class="sub-copy" id="subCopy">まだ見ぬ邸宅が、あなたを待っている。</p>
+      <!-- 3つ目以降の特徴を並べる本文（ボディコピー） -->
+      <div class="body-copy" id="bodyCopy"></div>
+      <div class="property">
+        <p class="property-name" id="propertyName">（物件名）</p>
+        <p class="property-info" id="propertyInfo">全◯邸　第1期 販売予定</p>
+        <!-- 広告のすみっこにある小さな注釈（デメリットの正体） -->
+        <p class="notes" id="notes"></p>
+      </div>
+    </section>
+
+    <!-- 操作ボタン -->
+    <div class="buttons">
+      <button class="btn btn-main" id="generateBtn">ポエムを生成する</button>
+      <button class="btn btn-sub" id="copyBtn">コピー</button>
+    </div>
+    <p class="message" id="message"></p>
+
+    <!-- これまでに作ったポエムの履歴 -->
+    <section class="history">
+      <h3>最近のポエム</h3>
+      <ul id="historyList"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>※このアプリはジョークです。実在の物件・企業とは関係ありません。</p>
+  </footer>
+
+  <!-- 動き（プログラム）は script.js に書く。HTMLを読み終わってから実行するため最後に置く -->
+  <script src="script.js"></script>
+</body>
+</html>
